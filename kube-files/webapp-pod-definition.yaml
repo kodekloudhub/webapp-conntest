@@ -1,19 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: webapp-resource
+  name: webapp-conntest
   labels:
-    name: webapp-resource
+    name: webapp-conntest
 spec:
   containers:
-  - name: webapp-resource
-    image: kodekloud/webapp-resource
+  - name: webapp-conntest
+    image: kodekloud/webapp-conntest
     ports:
     - containerPort: 8080
-    resources:
-      requests:
-        memory: "1Gi"
-        cpu: 1
-      limits:
-        memory: "1Gi"
-        cpu: 1
