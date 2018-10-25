@@ -1,0 +1,42 @@
+<div class="container">
+
+    <div class="card-panel hoverable center-align main-card-panel" style="padding-top: 0px;">
+
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input placeholder="webapp-service" ng-model="host" id="first_name" type="text" class="validate">
+                  <label for="first_name">Host Name</label>
+                </div>
+                <div class="input-field col s6">
+                  <input placeholder="8080" id="last_name" ng-model="port" type="number" class="validate">
+                  <label for="last_name">Host Port</label>
+                </div>
+              </div>
+
+               <button style="margin-right: 20px;" class="waves-effect waves-light btn" ng-class="{'disabled': is_loading}" ng-click="test()"> Test
+                <i class="fa fa-refresh fa-spin fa-3x fa-fw" ng-show="is_loading"></i>
+               </button>
+
+                <ul class="fa-ul">
+                    <li style="text-align: left" ng-if="alert_message">
+                        <i class="fa-li fa fa-close" ng-if="alert_type==='failure'"></i>
+                        <i class="fa-li fa fa-check" ng-if="alert_type==='success'"></i>
+                      <!--<span class="title">Title</span>-->
+                        {{ alert_message }}
+
+                    </li>
+                </ul>
+
+            </form>
+
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function(){
+        M.updateTextFields();
+      });
+
+</script>
