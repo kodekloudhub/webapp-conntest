@@ -1,13 +1,26 @@
 from flask import Flask, jsonify, request, abort, make_response
 from flask import render_template
 import socket
+import os
 
 TEMPLATES_FOLDER = 'templates'
 STATICS_FOLDER = 'static'
 app = Flask(__name__, static_url_path='', static_folder=STATICS_FOLDER, template_folder=TEMPLATES_FOLDER)
 
 BACKGROUND_IMAGE = "under_water.png"
-CSS_FILE = "blue"
+# CSS_FILE = "blue"
+
+color_codes = {
+    "red": "#e74c3c",
+    "green": "#16a085",
+    "blue": "#2980b9",
+    "blue2": "#30336b",
+    "pink": "#be2edd",
+    "darkblue": "#130f40"
+}
+
+APP_NAME = "APP_NAME" in os.environ and os.environ.get('APP_NAME') or "Connectivity Test App"
+BG_COLOR = "BG_COLOR" in os.environ and os.environ.get('BG_COLOR') or "blue"
 
 
 def socket_test(host, port):
@@ -39,16 +52,11 @@ def test():
 
 @app.route('/')
 def main():
-    return render_template('index.html', theme=CSS_FILE, background_image='../images/'+BACKGROUND_IMAGE)
+    try:
+        return render_template('index.html', theme=BG_COLOR, background_image='../images/'+BACKGROUND_IMAGE, app_name=APP_NAME, backgroundcolor=color_codes[BG_COLOR])
+    except Exception as ex:
+        print(str(ex))
 
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
-    # os.system("python cpu_task.py &")
-
-    # os.spawnl(os.P_DETACH, 'python', 'cpu_task.py')
-    # processes = cpu_count()
-    # mem = virtual_memory()
-    # print("Memory=" + str(mem.total/1024/1024/1024))  # total physical memory available
-    # print('utilizing %d cores\n' % processes)
-    #generate_load()
