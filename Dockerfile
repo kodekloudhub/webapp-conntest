@@ -2,7 +2,7 @@ FROM python:3.6-alpine
 
 RUN apk add --no-cache curl python pkgconfig python-dev openssl-dev libffi-dev musl-dev
 
-ADD ./requirements.txt /opt/webapp-resource/
+ADD ./requirements.txt /opt/webapp-conntest/
 
 WORKDIR /opt/webapp-conntest
 
