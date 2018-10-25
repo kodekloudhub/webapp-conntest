@@ -4,11 +4,11 @@ RUN apk add --no-cache curl python pkgconfig python-dev openssl-dev libffi-dev m
 
 ADD ./requirements.txt /opt/webapp-resource/
 
-WORKDIR /opt/webapp-resource
+WORKDIR /opt/webapp-conntest
 
 RUN pip install -r requirements.txt
 
-ADD . /opt/webapp-resource
+ADD . /opt/webapp-conntest
 
 EXPOSE 8080
 

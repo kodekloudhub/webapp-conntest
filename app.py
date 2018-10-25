@@ -7,7 +7,7 @@ STATICS_FOLDER = 'static'
 app = Flask(__name__, static_url_path='', static_folder=STATICS_FOLDER, template_folder=TEMPLATES_FOLDER)
 
 BACKGROUND_IMAGE = "under_water.png"
-CSS_FILE =  "blue"
+CSS_FILE = "blue"
 
 
 def socket_test(host, port):
