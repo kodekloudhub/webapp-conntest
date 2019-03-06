@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, abort, make_response
+import requests
 from flask import render_template
 import socket
 import os
@@ -36,6 +37,29 @@ def socket_test(host, port):
         return {"status": False, "message": str(ex)}
 
     return {"status": True, "message": "Success!"}
+
+
+def request_url(host, port):
+    try:
+        r = requests.get('http://%s:%s'.format(host, port))
+        output = r.text
+    except Exception as ex:
+        print('Unable to connect ' + str(ex))
+        return {"status": False, "message": str(ex)}
+
+    return {"status": True, "message": output}
+
+
+@app.route('/test_web', methods=['POST'])
+def test_web():
+    json_data = request.get_json(silent=True)
+
+    test_results = request_url(json_data["host"], json_data["port"])
+
+    if test_results["status"]:
+        return jsonify(test_results)
+    else:
+        return abort(make_response(jsonify(test_results), 400))
 
 
 @app.route('/test', methods=['POST'])
