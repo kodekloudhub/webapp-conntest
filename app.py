@@ -41,7 +41,7 @@ def socket_test(host, port):
 
 def request_url(host, port):
     try:
-        r = requests.get('http://%s:%s'.format(host, port))
+        r = requests.get('http://{}:{}'.format(host, port))
         output = r.text
     except Exception as ex:
         print('Unable to connect ' + str(ex))
