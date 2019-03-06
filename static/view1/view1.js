@@ -26,7 +26,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
      $scope.test = function(){
         $scope.is_loading = true;
-        $http.post("/test_web", {host: $scope.host, port: $scope.port}).then(function(response){
+        $http.post("/test", {host: $scope.host, port: $scope.port}).then(function(response){
             $scope.is_loading = false;
             $scope.alert_message = response.data.message;
             $scope.alert_type = "success"
