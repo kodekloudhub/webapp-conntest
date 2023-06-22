@@ -1,6 +1,6 @@
-FROM python:3.6-alpine
+FROM python:alpine
 
-RUN apk add --no-cache curl python pkgconfig python-dev openssl-dev libffi-dev musl-dev
+# RUN apk add --no-cache curl python pkgconfig python-dev openssl-dev libffi-dev musl-dev
 
 ADD ./requirements.txt /opt/webapp-conntest/
 
